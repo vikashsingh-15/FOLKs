@@ -1,0 +1,45 @@
+# Ignore node_modules everywhere (even in subfolders)
+**/node_modules/
+
+# Ignore build folders (React, Next.js, custom builds)
+**/build/
+**/dist/
+.next/
+out/
+
+# Dependency & Package managers
+.pnp/
+.pnp.js
+package-lock.json
+yarn.lock
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Test coverage
+coverage/
+*.lcov
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/editor configs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Misc
+*.local
+*.log
