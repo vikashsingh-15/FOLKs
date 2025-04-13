@@ -69,6 +69,7 @@ const Header = () => {
         anchorEl={anchorEl}
         setOpen={setOpenDrawer}
       />
+
       {/* <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} /> */}
       {/* <InfoDrawer drawer={{ open: openDrawer, setOpen: setOpenDrawer }} /> */}
     </>

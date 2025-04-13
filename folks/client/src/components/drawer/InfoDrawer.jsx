@@ -1,3 +1,92 @@
+import React from "react";
+import { Popover, Box, styled, Typography } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
+//components
+import Proile from "./Profile";
+
+//styled components
+
+const StyledPopover = styled(Popover)`
+  & .MuiPopover-paper {
+    background-color: #ff6a20;
+    color: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: 75%;
+    width: 300px;
+  }
+`;
+
+const StyledProfileBackBox = styled(Box)`
+  background-color: #0d253a;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: left;
+  cursor: pointer;
+  gap: 10px;
+`;
+
+const StyledProfileBox = styled(Box)`
+  //   background-color: #4f959d;
+  //   height: 90%;
+`;
+
+const InfoDrawer = ({ open, anchorEl, setOpen }) => {
+  const handleClose = () => setOpen(false);
+
+  return (
+    <StyledPopover
+      open={open}
+      anchorEl={anchorEl}
+      onClose={handleClose}
+      anchorOrigin={{
+        vertical: "bottom",
+        horizontal: "left",
+      }}
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "left",
+      }}
+      transitionDuration={100} // in ms
+      //   PaperProps={{
+      //     sx: {
+      //       width: 300,
+      //       height: 400,
+      //       backgroundColor: "#0d253a",
+      //       color: "#fff",
+      //       borderRadius: "12px",
+      //       padding: "16px",
+      //       boxShadow: 6,
+      //     },
+      //   }}
+    >
+      <StyledProfileBackBox>
+        <ArrowBackIcon onClick={() => setOpen(false)} />
+        <Typography>Proile</Typography>
+      </StyledProfileBackBox>
+      <StyledProfileBox>
+        <Proile />
+      </StyledProfileBox>
+    </StyledPopover>
+  );
+};
+
+export default InfoDrawer;
+
+//
+//
+//
+//
+//
+//
+//
+//
+
+////way 2 use of Drawer
+
 // import { Drawer } from "@mui/material";
 // import { styled } from "@mui/material";
 
@@ -31,46 +120,3 @@
 //   );
 // };
 // export default InfoDrawer;
-
-////way 2
-
-import React from "react";
-import { Popover, Box } from "@mui/material";
-
-const InfoDrawer = ({ open, anchorEl, setOpen }) => {
-  const handleClose = () => setOpen(false);
-
-  return (
-    <Popover
-      open={open}
-      anchorEl={anchorEl}
-      onClose={handleClose}
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "left",
-      }}
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "left",
-      }}
-      PaperProps={{
-        sx: {
-          width: 300,
-          height: 400,
-          backgroundColor: "#0d253a",
-          color: "#fff",
-          borderRadius: "12px",
-          padding: "16px",
-          boxShadow: 6,
-        },
-      }}
-    >
-      <Box>
-        <h3 style={{ margin: 0 }}>User Info</h3>
-        <p>This is your custom popover drawer content.</p>
-      </Box>
-    </Popover>
-  );
-};
-
-export default InfoDrawer;
