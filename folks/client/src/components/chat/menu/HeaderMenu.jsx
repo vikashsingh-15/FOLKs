@@ -3,6 +3,9 @@ import { Menu, MenuItem } from "@mui/material";
 import React, { useState } from "react";
 import { styled } from "@mui/material";
 
+//components
+import InfoDrawer from "../../drawer/InfoDrawer";
+
 //styles
 
 const StyledMenuItems = styled(MenuItem)`
@@ -15,9 +18,17 @@ const StyledMenuItems = styled(MenuItem)`
 `;
 const HeaderMenu = () => {
   const [open, setOpen] = useState(null);
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setOpen(event.currentTarget);
+  };
+
+  const handleDrawerOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpenDrawer(true);
+    handleClose();
   };
 
   const handleClose = () => {
@@ -43,9 +54,14 @@ const HeaderMenu = () => {
           },
         }}
       >
-        <StyledMenuItems onClick={handleClose}>My account</StyledMenuItems>
+        <StyledMenuItems onClick={handleDrawerOpen}>Profile</StyledMenuItems>
         <StyledMenuItems onClick={handleClose}>Logout</StyledMenuItems>
       </Menu>
+      <InfoDrawer
+        openDrawer={openDrawer}
+        anchorEl={anchorEl}
+        setOpenDrawer={setOpenDrawer}
+      />
     </>
   );
 };

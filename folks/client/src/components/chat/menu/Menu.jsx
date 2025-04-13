@@ -10,6 +10,7 @@ const StyledMenu = styled(Box)`
   display: flex;
   flex-direction: column;
   background-color: #034c53;
+  height: calc(100vh - 90px);
 `;
 
 const Menu = () => {

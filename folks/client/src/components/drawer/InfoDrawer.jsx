@@ -34,12 +34,12 @@ const StyledProfileBox = styled(Box)`
   //   height: 90%;
 `;
 
-const InfoDrawer = ({ open, anchorEl, setOpen }) => {
-  const handleClose = () => setOpen(false);
+const InfoDrawer = ({ openDrawer, anchorEl, setOpenDrawer }) => {
+  const handleClose = () => setOpenDrawer(false);
 
   return (
     <StyledPopover
-      open={open}
+      open={openDrawer}
       anchorEl={anchorEl}
       onClose={handleClose}
       anchorOrigin={{
@@ -48,7 +48,7 @@ const InfoDrawer = ({ open, anchorEl, setOpen }) => {
       }}
       transformOrigin={{
         vertical: "top",
-        horizontal: "left",
+        // horizontal: "left",
       }}
       transitionDuration={100} // in ms
       //   PaperProps={{
@@ -64,7 +64,7 @@ const InfoDrawer = ({ open, anchorEl, setOpen }) => {
       //   }}
     >
       <StyledProfileBackBox>
-        <ArrowBackIcon onClick={() => setOpen(false)} />
+        <ArrowBackIcon onClick={() => setOpenDrawer(false)} />
         <Typography>Proile</Typography>
       </StyledProfileBackBox>
       <StyledProfileBox>

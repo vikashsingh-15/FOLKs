@@ -1,5 +1,5 @@
-import React from "react";
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
+// import { useEffect, useRef } from "react";
 import { Box, styled } from "@mui/material";
 import { Chat as ChatIcon } from "@mui/icons-material";
 // import { MoreVert } from "@mui/icons-material";
@@ -38,6 +38,16 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
 
+  // const [imagePosition, setImagePosition] = useState(null);
+  // const imageRef = useRef(null);
+  // useEffect(() => {
+  //   if (imageRef.current) {
+  //     const rect = imageRef.current.getBoundingClientRect();
+  //     setImagePosition(rect); // ✅ Store position
+  //     console.log("Ref position:", rect);
+  //   }
+  // }, []);
+
   const handleImageClick = (event) => {
     setAnchorEl(event.currentTarget);
     setOpenDrawer(true);
@@ -65,9 +75,9 @@ const Header = () => {
       </StyledHeader>
 
       <InfoDrawer
-        open={openDrawer}
+        openDrawer={openDrawer}
         anchorEl={anchorEl}
-        setOpen={setOpenDrawer}
+        setOpenDrawer={setOpenDrawer}
       />
 
       {/* <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} /> */}
