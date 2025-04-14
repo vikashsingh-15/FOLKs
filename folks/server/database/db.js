@@ -1,8 +1,12 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+
+const UserName = process.env.DB_USERNAME;
+const Password = process.env.DB_PASSWORD;
 
 const Connection = async () => {
-  const URL =
-    "mongodb+srv://admin:admin@cluster0.blvrw93.mongodb.net/myDatabase?retryWrites=true&w=majority&appName=Cluster0";
+  const URL = `mongodb+srv://${UserName}:${Password}@cluster0.blvrw93.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
   try {
     await mongoose.connect(URL, {
       useNewUrlParser: true,
@@ -14,4 +18,4 @@ const Connection = async () => {
   }
 };
 
-module.exports = Connection;
+export default Connection;
