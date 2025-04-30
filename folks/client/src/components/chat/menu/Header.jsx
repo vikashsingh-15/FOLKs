@@ -21,8 +21,8 @@ const StyledHeader = styled(Box)`
 `;
 
 const StyledProfileImage = styled("img")`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   margin-right: 10px;
 `;
@@ -37,6 +37,9 @@ const Header = () => {
   const { account } = useContext(AccountContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
+
+  // console.log("Account name:", account.name);
+  console.log("Image URL:", account.picture);
 
   // const [imagePosition, setImagePosition] = useState(null);
   // const imageRef = useRef(null);

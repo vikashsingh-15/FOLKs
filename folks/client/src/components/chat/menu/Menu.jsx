@@ -1,8 +1,11 @@
 import { Box, styled } from "@mui/material";
+import React from "react";
+import { useState } from "react";
 //Component: Menu.jsx
 
 import Header from "./Header";
 import Search from "./Search";
+import Conversations from "./Conversations";
 
 //Style
 
@@ -14,10 +17,12 @@ const StyledMenu = styled(Box)`
 `;
 
 const Menu = () => {
+  const [text, setText] = useState("");
   return (
     <StyledMenu>
       <Header />
-      <Search />
+      <Search setText={setText} />
+      <Conversations text={text} />
     </StyledMenu>
   );
 };

@@ -1,18 +1,25 @@
 import React from "react";
+import { useContext } from "react";
 import { Box, styled } from "@mui/material";
 
 //Components
 import Menu from "./menu/Menu";
 import EmptyChat from "./chat/EmptyChat";
+import ChatBox from "./chat/ChatBox";
+import { AccountContext } from "../../context/AccountProvider";
 
 //styles
+
 const StyledCustomChatDiv = styled("div")`
-  margin-top: 50px;
+  margin-top: 55px;
   padding: 20px;
-  background-color: #ff6a20; //whole screen colour is controled by this
-  height: calc(100vh - 90px);
-  max-weight: 100%;
+  background-color: #ff5100;
+  max-width: 100%;
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  // height: calc(100vh - 50px);
+  height: 100%;
 `;
 
 const StyledCustomChatDialogHomeScreen = styled(Box)`
@@ -21,22 +28,22 @@ const StyledCustomChatDialogHomeScreen = styled(Box)`
 
 const StyledLeftSide = styled(Box)`
   //   flex: 0.3;
-  width: 400px;
+  width: 350px;
   margin-right: 5px;
-  height: calc(100vh - 90px);
-  min-width: 400px;
+  // height: calc(100vh - 90px);
+  min-width: 350px;
 `;
 
 const StyledRightSide = styled(Box)`
-  //   flex: 0.7;
-  width: 73%;
-  min-width: 400px;
-  border-left: 1px solid #dcdcdc;
+  display: flex;
+  flex-direction: column;
   background-color: #034c53;
   height: calc(100vh - 90px);
+  width: 100%;
 `;
 
 const ChatDialog = () => {
+  const { person } = useContext(AccountContext);
   return (
     <>
       <StyledCustomChatDiv>
@@ -45,7 +52,7 @@ const ChatDialog = () => {
             <Menu />
           </StyledLeftSide>
           <StyledRightSide>
-            <EmptyChat />
+            {Object.keys(person).length ? <ChatBox /> : <EmptyChat />}
           </StyledRightSide>
         </StyledCustomChatDialogHomeScreen>
       </StyledCustomChatDiv>

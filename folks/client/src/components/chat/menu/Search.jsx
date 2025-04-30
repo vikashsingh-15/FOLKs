@@ -29,14 +29,17 @@ const StyledInputBase = styled(InputBase)`
   color: #fff;
 `;
 
-const Search = () => {
+const Search = ({ setText }) => {
   return (
     <StyledSearchBox>
       <StyledSearchInputWrapper>
         <StyledSearchIcon>
           <SearchIcon fontSize="small" />
         </StyledSearchIcon>
-        <StyledInputBase placeholder="Search…" />
+        <StyledInputBase
+          placeholder="Search…"
+          onChange={(e) => setText(e.target.value)}
+        />
       </StyledSearchInputWrapper>
     </StyledSearchBox>
   );

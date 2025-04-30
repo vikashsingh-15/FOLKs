@@ -1,0 +1,54 @@
+import { useState } from "react";
+import { Box, InputBase, styled } from "@mui/material";
+import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
+import AttachFileIcon from "@mui/icons-material/AttachFile";
+import MicIcon from "@mui/icons-material/Mic";
+
+const StyledContainer = styled(Box)`
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background-color: #0d253a;
+  //   justify-content: space-between;
+  & > * {
+    margin: 5px;
+    color: #919191;
+  }
+`;
+
+const StyledInputBox = styled(Box)`
+  background-color: #ffffff;
+  border-radius: 18px;
+  width: calc(100% - 100px);
+`;
+
+const StyledInputBase = styled(InputBase)`
+  width: 100%;
+  padding: 20px;
+  height: 20px;
+  border-radius: 18px;
+  //   background-color: #ffffff;
+  color: #000000;
+  font-size: 14px;
+`;
+
+const Footer = ({ sendText, setValue, value }) => {
+  return (
+    <StyledContainer>
+      <EmojiEmotionsOutlinedIcon />
+      <AttachFileIcon />
+      <StyledInputBox>
+        <StyledInputBase
+          placeholder="Type a message"
+          onChange={(e) => setValue(e.target.value)}
+          onKeyPress={(e) => sendText(e)}
+          value={value}
+        />
+      </StyledInputBox>
+      <MicIcon />
+    </StyledContainer>
+  );
+};
+
+export default Footer;

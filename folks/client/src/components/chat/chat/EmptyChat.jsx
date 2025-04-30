@@ -10,20 +10,26 @@ const StyledBox = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #0d253a;
   align-items: center;
   padding: 20px;
+  height: 100%;
 `;
-const StyledImageBox = styled(Box)``;
+const StyledImageBox = styled(Box)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const StyledImage = styled("img")`
-  width: 500px;
-  height: 500px;
+  width: 50%;
+  height: 50%;
   border-radius: 50%;
 `;
 
 const StyledDescriptionBox = styled(Typography)`
   color: white;
-  margin: 0;
+  margin: 15px;
   margin-top: 15px;
   font-size: 20px;
   font-weight: bold;
