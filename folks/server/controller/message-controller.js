@@ -17,3 +17,13 @@ export const newMessage = async (req, res) => {
     res.status(500).json({ message: "Error in sending message" });
   }
 };
+
+export const getMessages = async (req, res) => {
+  try {
+    const messages = await Message.find({ conversationId: req.params.id });
+    return res.status(200).json(messages);
+  } catch (error) {
+    console.error("Error in getting messages:", error.message);
+    res.status(500).json({ message: "Error in getting messages" });
+  }
+};

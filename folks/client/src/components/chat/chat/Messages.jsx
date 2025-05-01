@@ -1,11 +1,12 @@
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Box, styled } from "@mui/material";
 // import { emptyChatImage } from "../../../resources/data";
 //Components
 import Footer from "./Footer";
 import { AccountContext } from "../../../context/AccountProvider";
-import { newMessage } from "../../../service/api";
+import { newMessage, getMessages } from "../../../service/api";
+import Message from "./Message";
 
 const StyledMessageBox = styled(Box)`
   // background-image: url("https://i.ibb.co/s9z3NP6d/download.jpg");
@@ -23,9 +24,23 @@ const StyledFooterBox = styled(Box)`
   width: 100%;
 `;
 
+const StyledMessageContainerBox = styled(Box)`
+  padding: 2px 20px;
+`;
+
 const Messages = ({ person, conversation }) => {
   const [value, setValue] = useState("");
+  const [messages, setMessages] = useState([]);
   const { account } = useContext(AccountContext);
+  const [newMessageFlag, setNewMessageFlag] = useState(false);
+  useEffect(() => {
+    const getMessagesDetails = async () => {
+      let data = await getMessages(conversation._id);
+      // console.log("Messages data", data);
+      setMessages(data);
+    };
+    conversation._id && getMessagesDetails();
+  }, [person._id, conversation._id, newMessageFlag]);
 
   const sendText = async (e) => {
     // console.log(e);
@@ -47,12 +62,20 @@ const Messages = ({ person, conversation }) => {
       // console.log("Message to be sent:", message);
       await newMessage(message);
       setValue(""); //clear input field
+      setNewMessageFlag((prev) => !prev); // trigger re-render to show new message
     }
   };
 
   return (
     <StyledMessageBox>
-      <StyledMessage>Message</StyledMessage>
+      <StyledMessage>
+        {messages &&
+          messages.map((message) => (
+            <StyledMessageContainerBox>
+              <Message message={message} />
+            </StyledMessageContainerBox>
+          ))}
+      </StyledMessage>
       <Footer sendText={sendText} setValue={setValue} value={value} />
     </StyledMessageBox>
   );
