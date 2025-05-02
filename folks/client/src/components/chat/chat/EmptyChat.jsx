@@ -14,6 +14,7 @@ const StyledBox = styled(Box)`
   align-items: center;
   padding: 20px;
   height: 100%;
+  // margin: 20px;
 `;
 const StyledImageBox = styled(Box)`
   display: flex;
@@ -22,15 +23,13 @@ const StyledImageBox = styled(Box)`
 `;
 
 const StyledImage = styled("img")`
-  width: 50%;
-  height: 50%;
-  border-radius: 50%;
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
 `;
 
 const StyledDescriptionBox = styled(Typography)`
   color: white;
-  margin: 15px;
-  margin-top: 15px;
   font-size: 20px;
   font-weight: bold;
 `;

@@ -6,7 +6,9 @@ import { AccountContext } from "../../../context/AccountProvider";
 
 const StyledSenderSideBox = styled(Box)`
   display: flex;
-  background: #dcf8c6;
+  //   background: #dcf8c6;
+  background: #1f5587;
+  color: #ffffff;
   border-radius: 10px;
   max-width: 60%;
   padding: 5px;
