@@ -80,7 +80,7 @@ const ImageMessage = ({ message }) => {
             alt="pdf"
             style={{ width: 100, height: 100 }}
           />
-          <StyledText>{message.text.split("/").pop()}</StyledText>
+          <StyledText>{message.text.split("-file-").pop()}</StyledText>
         </Box>
       ) : (
         <Box style={{ display: "flex", gap: "10px" }}>
@@ -89,7 +89,7 @@ const ImageMessage = ({ message }) => {
             alt="message.text"
             style={{ width: 100, height: 100 }}
           />
-          <StyledText>{message.text.split("/").pop()}</StyledText>
+          <StyledText>{message.text.split("-file-").pop()}</StyledText>
         </Box>
       )}
       <StyledDate style={{ position: "absolute", bottom: 0, right: 0 }}>
