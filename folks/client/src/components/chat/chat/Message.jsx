@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box, styled, Typography } from "@mui/material";
-
-import { formatDate } from "../../../utils/common-utils";
+import GetAppIcon from "@mui/icons-material/GetApp";
+import { formatDate, downloadMedia } from "../../../utils/common-utils";
 import { AccountContext } from "../../../context/AccountProvider";
 
 const StyledSenderSideBox = styled(Box)`
@@ -47,15 +47,74 @@ export const Message = ({ message }) => {
     <>
       {message.senderId === account.sub ? (
         <StyledSenderSideBox>
-          <StyledText>{message.text}</StyledText>
-          <StyledDate>{formatDate(message.createdAt)}</StyledDate>
+          {message.type === "file" ? (
+            <ImageMessage message={message} />
+          ) : (
+            <TextMessage message={message} />
+          )}
+          {/* <StyledText>{message.text}</StyledText> */}
+          {/* <StyledDate>{formatDate(message.createdAt)}</StyledDate> */}
         </StyledSenderSideBox>
       ) : (
         <StyledReceiverSideBox>
-          <StyledText>{message.text}</StyledText>
-          <StyledDate>{formatDate(message.createdAt)}</StyledDate>
+          {message.type === "file" ? (
+            <ImageMessage message={message} />
+          ) : (
+            <TextMessage message={message} />
+          )}
+          {/* <StyledText>{message.text}</StyledText>
+          <StyledDate>{formatDate(message.createdAt)}</StyledDate> */}
         </StyledReceiverSideBox>
       )}
+    </>
+  );
+};
+
+const ImageMessage = ({ message }) => {
+  return (
+    <Box style={{ position: "relative" }}>
+      {message?.text?.includes(`.pdf`) ? (
+        <Box style={{ display: "flex", gap: "10px" }}>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/337/337946.png"
+            alt="pdf"
+            style={{ width: 100, height: 100 }}
+          />
+          <StyledText>{message.text.split("/").pop()}</StyledText>
+        </Box>
+      ) : (
+        <Box style={{ display: "flex", gap: "10px" }}>
+          <img
+            src={message.text}
+            alt="message.text"
+            style={{ width: 100, height: 100 }}
+          />
+          <StyledText>{message.text.split("/").pop()}</StyledText>
+        </Box>
+      )}
+      <StyledDate style={{ position: "absolute", bottom: 0, right: 0 }}>
+        <GetAppIcon
+          onClick={(e) => {
+            downloadMedia(e, message.text);
+          }}
+          style={{
+            marginRight: 10,
+            border: `1px solid grey`,
+            borderRadius: "50%",
+          }}
+          fontSize="small"
+        />
+        {formatDate(message.createdAt)}
+      </StyledDate>
+    </Box>
+  );
+};
+
+const TextMessage = ({ message }) => {
+  return (
+    <>
+      <StyledText>{message.text}</StyledText>
+      <StyledDate>{formatDate(message.createdAt)}</StyledDate>
     </>
   );
 };

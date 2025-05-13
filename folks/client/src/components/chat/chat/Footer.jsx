@@ -35,7 +35,7 @@ const StyledInputBase = styled(InputBase)`
   font-size: 14px;
 `;
 
-const Footer = ({ sendText, setValue, value, file, setFile }) => {
+const Footer = ({ sendText, setValue, value, file, setFile, setImage }) => {
   useEffect(() => {
     const getImage = async () => {
       if (file) {
@@ -43,7 +43,8 @@ const Footer = ({ sendText, setValue, value, file, setFile }) => {
         data.append("name", file.name);
         data.append("file", file);
 
-        await uploadFile(data);
+        let response = await uploadFile(data);
+        setImage(response.data.imageUrl);
       }
     };
     getImage();

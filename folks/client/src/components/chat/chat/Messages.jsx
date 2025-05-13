@@ -34,6 +34,8 @@ const Messages = ({ person, conversation }) => {
   const { account } = useContext(AccountContext);
   const [newMessageFlag, setNewMessageFlag] = useState(false);
   const [file, setFile] = useState();
+  const [image, setImage] = useState("");
+
   useEffect(() => {
     const getMessagesDetails = async () => {
       let data = await getMessages(conversation._id);
@@ -46,24 +48,76 @@ const Messages = ({ person, conversation }) => {
   const sendText = async (e) => {
     // console.log(e);
     const code = e.keyCode || e.which;
+    // if (code === 13) {
+    //   if (!conversation || !conversation._id) {
+    //     console.error("Conversation is not defined or _id is missing");
+    //     return;
+    //   }
+
+    //   let message = {};
+
+    //   if (!file) {
+    //     message = {
+    //       senderId: account.sub,
+    //       receiverId: person.sub,
+    //       conversationId: conversation._id,
+    //       type: "text",
+    //       text: value,
+    //     };
+    //   } else {
+    //     message = {
+    //       senderId: account.sub,
+    //       receiverId: person.sub,
+    //       conversationId: conversation._id,
+    //       type: "file",
+    //       text: image,
+    //     };
+    //   }
+
+    //   // console.log("Message to be sent:", message);
+    //   await newMessage(message);
+    //   setValue(""); //clear input field
+    //   setFile(); //clear file input field
+    //   setImage(""); //clear image input field
+    //   setNewMessageFlag((prev) => !prev); // trigger re-render to show new message
+    // }
+
     if (code === 13) {
       if (!conversation || !conversation._id) {
         console.error("Conversation is not defined or _id is missing");
         return;
       }
 
-      let message = {
-        senderId: account.sub,
-        receiverId: person.sub,
-        conversationId: conversation._id,
-        type: "text",
-        text: value,
-      };
+      let message = {};
 
-      // console.log("Message to be sent:", message);
+      if (!file) {
+        message = {
+          senderId: account.sub,
+          receiverId: person.sub,
+          conversationId: conversation._id,
+          type: "text",
+          text: value,
+        };
+      } else {
+        if (!image) {
+          alert("Image is still uploading. Please wait.");
+          return;
+        }
+
+        message = {
+          senderId: account.sub,
+          receiverId: person.sub,
+          conversationId: conversation._id,
+          type: "file",
+          text: image,
+        };
+      }
+
       await newMessage(message);
-      setValue(""); //clear input field
-      setNewMessageFlag((prev) => !prev); // trigger re-render to show new message
+      setValue("");
+      setFile(null);
+      setImage("");
+      setNewMessageFlag((prev) => !prev);
     }
   };
 
@@ -83,6 +137,7 @@ const Messages = ({ person, conversation }) => {
         value={value}
         file={file}
         setFile={setFile}
+        setImage={setImage}
       />
     </StyledMessageBox>
   );
