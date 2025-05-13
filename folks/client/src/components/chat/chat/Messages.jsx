@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { Box, styled } from "@mui/material";
 // import { emptyChatImage } from "../../../resources/data";
 //Components
@@ -36,6 +36,8 @@ const Messages = ({ person, conversation }) => {
   const [file, setFile] = useState();
   const [image, setImage] = useState("");
 
+  const scrollRef = useRef();
+
   useEffect(() => {
     const getMessagesDetails = async () => {
       let data = await getMessages(conversation._id);
@@ -45,42 +47,12 @@ const Messages = ({ person, conversation }) => {
     conversation._id && getMessagesDetails();
   }, [person._id, conversation._id, newMessageFlag]);
 
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ transition: "smooth" });
+  }, [messages]);
+
   const sendText = async (e) => {
-    // console.log(e);
     const code = e.keyCode || e.which;
-    // if (code === 13) {
-    //   if (!conversation || !conversation._id) {
-    //     console.error("Conversation is not defined or _id is missing");
-    //     return;
-    //   }
-
-    //   let message = {};
-
-    //   if (!file) {
-    //     message = {
-    //       senderId: account.sub,
-    //       receiverId: person.sub,
-    //       conversationId: conversation._id,
-    //       type: "text",
-    //       text: value,
-    //     };
-    //   } else {
-    //     message = {
-    //       senderId: account.sub,
-    //       receiverId: person.sub,
-    //       conversationId: conversation._id,
-    //       type: "file",
-    //       text: image,
-    //     };
-    //   }
-
-    //   // console.log("Message to be sent:", message);
-    //   await newMessage(message);
-    //   setValue(""); //clear input field
-    //   setFile(); //clear file input field
-    //   setImage(""); //clear image input field
-    //   setNewMessageFlag((prev) => !prev); // trigger re-render to show new message
-    // }
 
     if (code === 13) {
       if (!conversation || !conversation._id) {
@@ -126,7 +98,7 @@ const Messages = ({ person, conversation }) => {
       <StyledMessage>
         {messages &&
           messages.map((message) => (
-            <StyledMessageContainerBox>
+            <StyledMessageContainerBox ref={scrollRef}>
               <Message message={message} />
             </StyledMessageContainerBox>
           ))}
