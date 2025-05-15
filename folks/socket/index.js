@@ -9,9 +9,9 @@ const io = new Server(9000, {
 let users = [];
 
 const addUser = (userData, socketId) => {
-  if (!users.some((user) => user.sub === userData.sub)) {
+  // ✅ Corrected variable name from "user" to "users"
+  !users.some((user) => user.sub === userData.sub) &&
     users.push({ ...userData, socketId });
-  }
 };
 
 const getUser = (userId) => {
