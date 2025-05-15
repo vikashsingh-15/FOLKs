@@ -37,20 +37,6 @@ const Header = () => {
   const { account } = useContext(AccountContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
-
-  // console.log("Account name:", account.name);
-  console.log("Image URL:", account.picture);
-
-  // const [imagePosition, setImagePosition] = useState(null);
-  // const imageRef = useRef(null);
-  // useEffect(() => {
-  //   if (imageRef.current) {
-  //     const rect = imageRef.current.getBoundingClientRect();
-  //     setImagePosition(rect); // ✅ Store position
-  //     console.log("Ref position:", rect);
-  //   }
-  // }, []);
-
   const handleImageClick = (event) => {
     setAnchorEl(event.currentTarget);
     setOpenDrawer(true);

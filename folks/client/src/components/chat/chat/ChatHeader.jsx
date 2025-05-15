@@ -50,7 +50,6 @@ const ChatHeader = ({ person }) => {
   return (
     <StyledChatHeader>
       <StyledUserImage
-        // src="https://i.ibb.co/VYrX1BDN/Default-Profile-Image.jpg"
         src={
           person.picture ||
           "https://i.ibb.co/VYrX1BDN/Default-Profile-Image.jpg"

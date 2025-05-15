@@ -1,11 +1,10 @@
 import { Box, Typography, styled } from "@mui/material";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 
 //Components
 import { AccountContext } from "../../../context/AccountProvider";
-import { setConnversation, getConversation } from "../../../service/api";
-import { formatDate } from "../../../utils/common-utils";
+import { setConnversation } from "../../../service/api";
 //Styled
 
 const StyledConversationBox = styled(Box)`

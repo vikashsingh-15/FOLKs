@@ -1,4 +1,3 @@
-import React from "react";
 import { Popover, Box, styled, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -48,9 +47,8 @@ const InfoDrawer = ({ openDrawer, anchorEl, setOpenDrawer }) => {
       }}
       transformOrigin={{
         vertical: "top",
-        // horizontal: "left",
       }}
-      transitionDuration={100} // in ms
+      transitionDuration={100}
       //   PaperProps={{
       //     sx: {
       //       width: 300,
@@ -75,48 +73,3 @@ const InfoDrawer = ({ openDrawer, anchorEl, setOpenDrawer }) => {
 };
 
 export default InfoDrawer;
-
-//
-//
-//
-//
-//
-//
-//
-//
-
-////way 2 use of Drawer
-
-// import { Drawer } from "@mui/material";
-// import { styled } from "@mui/material";
-
-// //styles
-
-// const StyledDrawer = styled(Drawer)`
-//   width: 300px;
-//   flex-shrink: 0;
-//   & .MuiDrawer-paper {
-//     width: 300px;
-//     background-color: #0d253a;
-//     color: white;
-//     border-radius: 0 0 0 0;
-//     padding: 20px;
-//     top: 70px;
-//     height: 85%;
-//     // height: calc(100% - 100px);
-//     left: 20px;
-//   }
-// `;
-
-// const InfoDrawer = ({ open, setOpen }) => {
-//   return (
-//     <StyledDrawer
-//       open={open}
-//       onClose={() => setOpen(false)}
-//       style={{ zIndex: 1500 }}
-//     >
-//       hellow
-//     </StyledDrawer>
-//   );
-// };
-// export default InfoDrawer;

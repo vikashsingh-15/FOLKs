@@ -18,12 +18,12 @@ const getUser = (userId) => {
 };
 
 io.on("connection", (socket) => {
-  console.log("✅ User connected:", socket.id);
+  // console.log("✅ User connected:", socket.id);
 
   socket.on("addUser", (userData) => {
     addUser(userData, socket.id);
     io.emit("getUsers", users);
-    console.log("📡 Users list:", users);
+    // console.log("📡 Users list:", users);
   });
 
   socket.on("sendMessage", (data) => {
@@ -32,7 +32,7 @@ io.on("connection", (socket) => {
     if (user) {
       io.to(user.socketId).emit("getMessage", data);
     } else {
-      console.warn("⚠️ Receiver not found in users list:", data.receiverId);
+      // console.warn("⚠️ Receiver not found in users list:", data.receiverId);
     }
   });
 });

@@ -51,7 +51,6 @@ const Footer = ({ sendText, setValue, value, file, setFile, setImage }) => {
   }, [file]);
 
   const onFileChange = (e) => {
-    // console.log(e);
     setFile(e.target.files[0]);
     setValue(e.target.files[0].name);
   };

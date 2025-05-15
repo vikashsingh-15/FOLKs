@@ -1,4 +1,3 @@
-import React from "react";
 import { useContext, useState, useEffect, useRef } from "react";
 import { Box, styled } from "@mui/material";
 // import { emptyChatImage } from "../../../resources/data";
@@ -7,7 +6,6 @@ import Footer from "./Footer";
 import { AccountContext } from "../../../context/AccountProvider";
 import { newMessage, getMessages } from "../../../service/api";
 import Message from "./Message";
-import { use } from "react";
 
 const StyledMessageBox = styled(Box)`
   // background-image: url("https://i.ibb.co/s9z3NP6d/download.jpg");
@@ -59,7 +57,6 @@ const Messages = ({ person, conversation }) => {
   useEffect(() => {
     const getMessagesDetails = async () => {
       let data = await getMessages(conversation._id);
-      // console.log("Messages data", data);
       setMessages(data);
     };
     conversation._id && getMessagesDetails();
@@ -74,7 +71,7 @@ const Messages = ({ person, conversation }) => {
 
     if (code === 13) {
       if (!conversation || !conversation._id) {
-        console.error("Conversation is not defined or _id is missing");
+        // console.error("Conversation is not defined or _id is missing");
         return;
       }
 

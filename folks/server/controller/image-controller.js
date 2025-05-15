@@ -7,7 +7,7 @@ let gfs, gridFsBucket;
 
 conn.once("open", () => {
   gridFsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
-    bucketName: "photos", // ✅ matches upload bucket
+    bucketName: "photos",
   });
 
   gfs = grid(conn.db, mongoose.mongo);

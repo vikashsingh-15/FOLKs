@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { AppBar, Box, Toolbar, styled } from "@mui/material";
 
 // components

@@ -1,5 +1,4 @@
 import { Box, styled } from "@mui/material";
-import React from "react";
 import { useState } from "react";
 //Component: Menu.jsx
 

@@ -48,13 +48,12 @@ function LoginDialog() {
 
   const onLoginSuccess = async (res) => {
     const decoded = jwtDecode(res.credential);
-    console.log("Login successful:", decoded);
     setAccount(decoded);
     await addUser(decoded);
     handleClose();
   };
   const onLoginError = (error) => {
-    console.error("Login failed:", error);
+    // console.error("Login failed:", error);
     // Handle login error here
   };
 

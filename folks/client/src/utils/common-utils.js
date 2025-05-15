@@ -11,7 +11,7 @@ export const downloadMedia = (e, url) => {
     fetch(url)
       .then((response) => response.blob())
       .then((blob) => {
-        const blobUrl = window.URL.createObjectURL(blob); // <-- Renamed to avoid conflict
+        const blobUrl = window.URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.style.display = "none";
         a.href = blobUrl;
@@ -22,12 +22,12 @@ export const downloadMedia = (e, url) => {
         a.download = "" + duplicateName;
         document.body.appendChild(a);
         a.click();
-        window.URL.revokeObjectURL(blobUrl); // revoke the correct one
+        window.URL.revokeObjectURL(blobUrl);
       })
       .catch((error) => {
-        console.error("Error downloading the file:", error);
+        // console.error("Error downloading the file:", error);
       });
   } catch (err) {
-    console.log("Error while downloading the file", err);
+    // console.log("Error while downloading the file", err);
   }
 };
