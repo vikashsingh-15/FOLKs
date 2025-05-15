@@ -6,6 +6,7 @@ const AccountProvider = ({ children }) => {
   const [account, setAccount] = useState(null);
   const [person, setPerson] = useState({});
   const [activeUsers, setActiveUsers] = useState([]);
+  const [newMessageFlag, setNewMessageFlag] = useState(false);
   const socket = useRef();
 
   useEffect(() => {
@@ -22,6 +23,8 @@ const AccountProvider = ({ children }) => {
         socket,
         activeUsers,
         setActiveUsers,
+        newMessageFlag,
+        setNewMessageFlag,
       }}
     >
       {children}

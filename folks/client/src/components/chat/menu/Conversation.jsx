@@ -1,10 +1,11 @@
 import { Box, Typography, styled } from "@mui/material";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 //Components
 import { AccountContext } from "../../../context/AccountProvider";
-import { setConnversation } from "../../../service/api";
+import { setConnversation, getConversation } from "../../../service/api";
+import { formatDate } from "../../../utils/common-utils";
 //Styled
 
 const StyledConversationBox = styled(Box)`
@@ -27,7 +28,6 @@ const StyledUserImage = styled("img")({
 
 const Conversation = ({ user }) => {
   const { setPerson, account } = useContext(AccountContext);
-
   const getUsers = async () => {
     setPerson(user);
     await setConnversation({ senderId: account.sub, receiverId: user.sub });
