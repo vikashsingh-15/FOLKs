@@ -8,7 +8,7 @@ export const newConversation = async (req, res) => {
       members: { $all: [senderId, receiverId] },
     });
     if (exist) {
-      console.log("Conversation already exists", exist);
+      // console.log("Conversation already exists", exist);
       return res.status(200).json({ message: "Conversation already exists" });
     }
     const newConversation = new Conversation({
@@ -18,7 +18,7 @@ export const newConversation = async (req, res) => {
     await newConversation.save();
     return res.status(200).json("Conversation saved successfully");
   } catch (error) {
-    console.error("Error creating conversation:", error.message);
+    // console.error("Error creating conversation:", error.message);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -35,7 +35,7 @@ export const getConversation = async (req, res) => {
     // }
     res.status(200).json(conversation);
   } catch (error) {
-    console.error("Error fetching conversation:", error.message);
+    // console.error("Error fetching conversation:", error.message);
     res.status(500).json({ message: "Internal server error" });
   }
 };
