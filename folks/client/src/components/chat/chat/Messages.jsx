@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import { AccountContext } from "../../../context/AccountProvider";
 import { newMessage, getMessages } from "../../../service/api";
 import Message from "./Message";
+import { use } from "react";
 
 const StyledMessageBox = styled(Box)`
   // background-image: url("https://i.ibb.co/s9z3NP6d/download.jpg");
@@ -31,12 +32,28 @@ const StyledMessageContainerBox = styled(Box)`
 const Messages = ({ person, conversation }) => {
   const [value, setValue] = useState("");
   const [messages, setMessages] = useState([]);
-  const { account } = useContext(AccountContext);
   const [newMessageFlag, setNewMessageFlag] = useState(false);
   const [file, setFile] = useState();
   const [image, setImage] = useState("");
-
+  const [incomingMessage, setIncomingMessage] = useState(null);
   const scrollRef = useRef();
+
+  const { account, socket } = useContext(AccountContext);
+
+  useEffect(() => {
+    socket.current.on("getMessage", (data) => {
+      setIncomingMessage({
+        ...data,
+        createdAt: Date.now(),
+      });
+    });
+  });
+
+  useEffect(() => {
+    incomingMessage &&
+      conversation?.members?.includes(incomingMessage.senderId) &&
+      setMessages((prev) => [...prev, incomingMessage]);
+  }, [incomingMessage, conversation]);
 
   useEffect(() => {
     const getMessagesDetails = async () => {
@@ -84,6 +101,8 @@ const Messages = ({ person, conversation }) => {
           text: image,
         };
       }
+
+      socket.current.emit("sendMessage", message);
 
       await newMessage(message);
       setValue("");
