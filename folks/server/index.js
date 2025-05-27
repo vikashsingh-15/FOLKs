@@ -4,6 +4,9 @@ import Routes from "./routes/route.js";
 import cors from "cors";
 import bodyParser from "body-parser";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ extended: true }));
@@ -12,7 +15,9 @@ app.use("/", Routes);
 
 Connection();
 
-const PORT = 8000;
+// const PORT = 8000;
+
+const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
   // console.log(`Server is running on http://localhost:${PORT}`);
