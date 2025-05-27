@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
-// const url = "http://localhost:8000";
 const url = process.env.BASE_URL || "http://localhost:8000";
 
 const conn = mongoose.connection;
